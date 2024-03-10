@@ -1,9 +1,12 @@
-from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.generics import GenericAPIView
 
 from api.v1.products.serializers import ProductSerializer
 from products.models import Product
 
 
-class ProductListAPIView(generics.ListAPIView):
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+class ProductListView(GenericAPIView):
+    def get(self, request):  # noqa
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response({"result": serializer.data})
