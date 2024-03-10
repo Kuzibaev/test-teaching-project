@@ -129,6 +129,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'config.openapi.CustomAutoSchema',
 }
 
 SPECTACULAR_SETTINGS = {
@@ -136,4 +137,5 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
     'CAMELIZE_NAMES': True,
     'SCHEMA_PATH_PREFIX': r'/api/v[0-9]',
+
 }

@@ -6,7 +6,7 @@ from products.models import Product, ProductMaterial, Material, Warehouse
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('product_name',)
 
 
 class MaterialSerializer(serializers.ModelSerializer):
@@ -22,6 +22,8 @@ class ProductMaterialSerializer(serializers.ModelSerializer):
 
 
 class WarehouseSerializer(serializers.ModelSerializer):
+    material = MaterialSerializer(read_only=True)
+
     class Meta:
         model = Warehouse
         fields = '__all__'
